@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagReportViewIds"
+    android:canRetrieveWindowContent="true"
+    android:description="@string/app_name"
+    android:notificationTimeout="100"
+    android:packageNames="com.meizu.media.music" />
+
+
+    <!--accessibilityEventTypes:设置响应事件的类型，这里设置typeAllMask，就是响应全部类型的事件-->
+    <!--accessibilityFeedbackType:设置回馈给用户的方式，有语音播出和振动，这里使用通用类型-->
+    <!--accessibilityFlags:缺省值-->
+    <!--canRetrieveWindowContent:表明此服务是否可以读取窗口中的内容,应该是最重要的属性了.在运行时不可修改-->
+    <!--description:用于描述此服务的信息,会显示在系统开启服务的设置界面-->
+    <!--notificationTimeout:设置响应时间 发送2次事件的时间间隔,超过后事件作废-->
+    <!--packageNames:目标包名，接收EventTypes的包名,多个包名用,隔开 .比如红包插件就要设置微信包名-->
