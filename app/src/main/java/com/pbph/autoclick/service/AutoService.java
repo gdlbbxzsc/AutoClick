@@ -1,4 +1,4 @@
-package com.pbph.autoclick;
+package com.pbph.autoclick.service;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -15,11 +15,12 @@ import android.widget.Toast;
 
 import java.io.OutputStream;
 import java.util.List;
+
 //  sendevent 也可实现类似功能
 public class AutoService extends Service {
 
     private boolean start = true;
-    private OutputStream os;
+
     /**
      * 模拟点击的ADB命令
      */
@@ -147,7 +148,7 @@ public class AutoService extends Service {
         return recentStats.getPackageName();
     }
 
-//
+    //
     //    //在IO流中输入命令，需要加"\n"，因为见到回车才会执行命令；
 ////如果直接用Runtime.getRuntime().exec(adbCommand)来执行，则不必加回车符；
 //
@@ -165,11 +166,11 @@ public class AutoService extends Service {
 //    public String AdbText = "input text 1234567890\n";
     public final void exec(String cmd) {
         try {
-            if (os == null) {
-                os = Runtime.getRuntime().exec("su").getOutputStream();
-            }
+            OutputStream os = Runtime.getRuntime().exec("su").getOutputStream();
+
             os.write(cmd.getBytes());
             os.flush();
+            os.close();
             Toast.makeText(AutoService.this, cmd, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();

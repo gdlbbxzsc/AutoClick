@@ -1,4 +1,4 @@
-package com.pbph.autoclick;
+package com.pbph.autoclick.service;
 
 import android.accessibilityservice.AccessibilityService;
 import android.text.TextUtils;

@@ -14,9 +14,13 @@ import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.TextView;
 
+import com.pbph.autoclick.activity.optionslist.OptionsListActivity;
+import com.pbph.autoclick.service.AutoService;
+
 import java.util.List;
 
 public class MainActivity extends Activity {
+    Context context=this;
     TextView tv_xy;
     TextView tv_btn;
 
@@ -34,7 +38,13 @@ public class MainActivity extends Activity {
 
 
         tv_btn.setOnClickListener(v -> {
+            if (true){
+                startActivity(new Intent(context, OptionsListActivity.class));
+                return;
+            }
             if (isStart) {
+
+
                 stopService(new Intent(MainActivity.this, AutoService.class));
                 tv_btn.setText("开启服务");
                 isStart = false;
