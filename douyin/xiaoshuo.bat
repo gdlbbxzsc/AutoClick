@@ -10,11 +10,13 @@ rem echo »¬¶¯·­Ò³
 adb shell input swipe 900 900 50 900  
   
 rem echo ÔÝÍ£10Ãë 
-ping localhost -n 3 > nul 
+ping localhost -n 2 > nul 
 
 if %m% leq 200 ( 
     goto :xun_huan_hua_dong
 )
+
+notepad 
   
 
   
