@@ -6,12 +6,8 @@ cd D:\dev\Android\sdk\platform-tools
 
 set /a m+=1
 
-
-
 rem echo »¬¶¯·­Ò³ 
-adb shell input swipe 900 900 50 900  
-
-rem adb shell input tap 63 161
+adb shell input swipe 333 300 0 300  
   
 rem echo ÔÝÍ£10Ãë 
 ping localhost -n 2 > nul 

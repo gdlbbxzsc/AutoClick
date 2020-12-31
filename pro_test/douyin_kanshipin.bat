@@ -3,7 +3,9 @@ rem Setlocal enabledelayedexpansion
 d:
 cd D:\dev\Android\sdk\platform-tools
 rem 循环 看视频
+::======================================
 
+::======================================
 
 rem echo 开始看视频  
  
@@ -41,7 +43,7 @@ rem echo 暂停10秒
 ping localhost -n 10 > nul 
 
 rem echo 滑动翻页 
-adb shell input swipe 999 900 999 138
+adb shell input swipe 333 477 333 0
 
 goto :eof
 
