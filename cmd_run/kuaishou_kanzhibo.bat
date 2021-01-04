@@ -1,6 +1,6 @@
 rem @echo off 
 
-adb -s %device_name% shell input tap %tap_go_zhuan_qian_x% %tap_go_zhuan_qian_y%
+adb -s %device_name% shell input tap %kuaishou_tap_go_zhuan_qian_x% %kuaishou_tap_go_zhuan_qian_y%
 
 ping localhost -n 2 > nul
 
@@ -8,13 +8,13 @@ echo 将去赚钱滑动到顶部
 call common_huadongdingbu.bat   
 
 rem echo 滑动到看直播按钮
-adb -s %device_name% shell input swipe 10 %swipe_to_zhibo_y% 10 0  
-adb -s %device_name% shell input swipe 10 %swipe_to_zhibo_y% 10 0  
-adb -s %device_name% shell input swipe 10 %swipe_to_zhibo_y% 10 0 
+adb -s %device_name% shell input swipe 10 %kuaishou_swipe_to_zhibo_y% 10 0  
+adb -s %device_name% shell input swipe 10 %kuaishou_swipe_to_zhibo_y% 10 0  
+adb -s %device_name% shell input swipe 10 %kuaishou_swipe_to_zhibo_y% 10 0 
 
  
 rem echo 点击看直播
-adb -s %device_name% shell input tap %tap_go_zhibo_x% %tap_go_zhibo_y%
+adb -s %device_name% shell input tap %kuaishou_tap_go_zhibo_x% %kuaishou_tap_go_zhibo_y%
   
 ping localhost -n 3 > nul
 

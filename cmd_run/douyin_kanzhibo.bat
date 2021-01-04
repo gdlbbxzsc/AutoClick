@@ -5,7 +5,7 @@ echo 运行看直播程序
  
 echo 点击去看直播
 ping localhost -n 2 > nul
-adb -s %device_name% shell input tap %tap_go_zhi_bo_x% %tap_go_zhi_bo_y% 
+adb -s %device_name% shell input tap %douyin_tap_go_zhi_bo_x% %douyin_tap_go_zhi_bo_y% 
 ping localhost -n 1 > nul
 
 echo 开始看直播  
@@ -25,8 +25,8 @@ call douyin_kanzhibo_hongbao.bat
 echo 运行开宝箱程序
 call douyin_kaibaoxiang.bat 1
 
-echo 是否看广告任务%boo_kanguanggao%
-if %boo_kanguanggao% equ 1 call :zhibokekanguanggaorenwu
+echo 是否看广告任务%boo_douyin_kanguanggao%
+if %boo_douyin_kanguanggao% equ 1 call :zhibokekanguanggaorenwu
 
 echo 判断直播时长
 call :panduan_zhibo_time
@@ -44,21 +44,21 @@ goto :eof
 :panduan_zhibo_time 
 rem 判断是否可以退出直播 条件为 超过三十分钟
   
-if not defined last_kai_zhi_bo_time (
+if not defined douyin_last_kai_zhi_bo_time (
 	rem echo "go utils_gettimestamp_hmsp"
 	call :get_last_kai_zhi_bo_time
 )  
 
-set "now_kai_zhi_bo_time="
+set "douyin_now_kai_zhi_bo_time="
 rem echo "go utils_gettimestamp_hmsp"
-call utils_gettimestamp_hms.bat now_kai_zhi_bo_time
+call utils_gettimestamp_hms.bat douyin_now_kai_zhi_bo_time
 rem echo now_kai_zhi_bo_time:%now_kai_zhi_bo_time%
 
 
-set /a "sec_count=%now_kai_zhi_bo_time%-%last_kai_zhi_bo_time%"
+set /a "sec_count=%douyin_now_kai_zhi_bo_time%-%douyin_last_kai_zhi_bo_time%"
 rem echo 距离上次直播时间：%sec_count%
 
-if %sec_count% gtr %kanzhibozongshichang% (
+if %sec_count% gtr %douyin_kanzhibozongshichang% (
 	rem echo 可退出直播
 
 	set "is_tui_chu_zhi_bo=1"
@@ -71,13 +71,13 @@ goto :eof
 ====================================
 
 :get_last_kai_zhi_bo_time
-call utils_gettimestamp_hms.bat last_kai_zhi_bo_time
-rem echo last_kai_zhi_bo_time:%last_kai_zhi_bo_time%
+call utils_gettimestamp_hms.bat douyin_last_kai_zhi_bo_time
+rem echo last_kai_zhi_bo_time:%douyin_last_kai_zhi_bo_time%
 goto :eof
 
 :the_end_exit 
 rem set last_kai_zhi_bo_time=%now_kai_zhi_bo_time%+2
-call utils_gettimestamp_hms.bat last_kai_zhi_bo_time
+call utils_gettimestamp_hms.bat douyin_last_kai_zhi_bo_time
 adb -s %device_name% shell input keyevent 4
  
 echo "退出直播"

@@ -46,25 +46,25 @@ call "douyin_device_%device_name%.bat"
 rem call test_set.bat
 
 ::----------------------
- set "last_qu_kan_guang_gao_time=0"
-rem set "last_kai_bao_xiang_time=0"
+rem set "douyin_last_qu_kan_guang_gao_time=0"
+rem set "douyin_last_kai_bao_xiang_time=0"
 ::----------------------
 
 
-echo 运行看小说:%boo_kanxiaoshuo%
-if %boo_kanxiaoshuo% equ 1 call douyin_kanxiaoshuo.bat
+echo 运行看小说:%boo_douyin_kanxiaoshuo%
+if %boo_douyin_kanxiaoshuo% equ 1 call douyin_kanxiaoshuo.bat
  
 
-echo 运行走路:%boo_zoulu%
-if %boo_zoulu% equ 1 call douyin_zoulu.bat
+echo 运行走路:%boo_douyin_zoulu%
+if %boo_douyin_zoulu% equ 1 call douyin_zoulu.bat
  
  
-echo 运行看直播:%boo_kanzhibo%
-if %boo_kanzhibo% equ 1 call douyin_kanzhibo.bat
+echo 运行看直播:%boo_douyin_kanzhibo%
+if %boo_douyin_kanzhibo% equ 1 call douyin_kanzhibo.bat
 
 
-echo 运行看视频:%boo_kanshipin%
-if %boo_kanshipin% equ 1 call douyin_kanshipin.bat
+echo 运行看视频:%boo_douyin_kanshipin%
+if %boo_douyin_kanshipin% equ 1 call douyin_kanshipin.bat
 
 goto :eof
 
@@ -78,17 +78,17 @@ call "kuaishou_device_%device_name%.bat"
 rem call test_set.bat
 
 ::---------------------- 
-rem set "last_kai_bao_xiang_time=0"
+rem set "kuaishou_last_kai_bao_xiang_time=0"
 ::----------------------
  
  
  
-echo 运行看直播:%boo_kanzhibo%
-if %boo_kanzhibo% equ 1 call kuaishou_kanzhibo.bat
+echo 运行看直播:%boo_kuaishou_kanzhibo%
+if %boo_kuaishou_kanzhibo% equ 1 call kuaishou_kanzhibo.bat
 
 
-echo 运行看视频:%boo_kanshipin%
-if %boo_kanshipin% equ 1 call kuaishou_kanshipin.bat
+echo 运行看视频:%boo_kuaishou_kanshipin%
+if %boo_kuaishou_kanshipin% equ 1 call kuaishou_kanshipin.bat
 
 goto :eof
 
