@@ -27,7 +27,7 @@ if %sec_count% gtr %douyin_shouzhibohongbaojiange% (
 
 rem pause
 goto :eof
-====================================
+::====================================
 
 :get_last_kai_zhi_bo_hong_bao_time
 call utils_gettimestamp_hms.bat douyin_last_kai_zhi_bo_hong_bao_time

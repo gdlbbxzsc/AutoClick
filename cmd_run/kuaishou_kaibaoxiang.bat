@@ -26,7 +26,7 @@ if %sec_count% gtr %kuaishou_baoxiangjiange% (
 
 rem pause
 goto :eof
-====================================
+::====================================
 
 :get_last_kai_bao_xiang_time
 call utils_gettimestamp_hms.bat kuaishou_last_kai_bao_xiang_time
@@ -40,13 +40,13 @@ rem 从首页去开宝箱
 echo 去赚钱页面
 adb -s %device_name% shell input tap %kuaishou_tap_go_zhuan_qian_x% %kuaishou_tap_go_zhuan_qian_y%
 
-ping localhost -n 2 > nul
+ping localhost -n 6 > nul
 
 
 echo 点击宝箱
 adb -s %device_name% shell input tap %kuaishou_tap_go_bao_xiang_x% %kuaishou_tap_go_bao_xiang_y%
 
-ping localhost -n 6 > nul
+ping localhost -n 4 > nul
 
 echo 点击宝箱广告
 adb -s %device_name% shell input tap %kuaishou_tap_go_bao_xiang_guang_gao_x% %kuaishou_tap_go_bao_xiang_guang_gao_y%
@@ -54,7 +54,7 @@ call kuaishou_kanguanggao.bat 35
  
 ping localhost -n 1 > nul
 
-call utils_gettimestamp_hms.bat last_kai_bao_xiang_time
+call utils_gettimestamp_hms.bat kuaishou_last_kai_bao_xiang_time
 
 echo 退出去赚钱页面
 adb -s %device_name% shell input keyevent 4

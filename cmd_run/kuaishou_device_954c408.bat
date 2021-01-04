@@ -1,4 +1,4 @@
-title 954c408-china
+ 
 ::=================
 echo 配置变量快手
 
@@ -34,9 +34,7 @@ set "kuaishou_tap_go_bao_xiang_guang_gao_x=522"
 set "kuaishou_tap_go_bao_xiang_guang_gao_y=1200"
 
 
-rem 点击继续播放视频 x y
-set "kuaishou_tap_jixubofangshipin_x=563"
-set "kuaishou_tap_jixubofangshipin_y=1264"
+ 
 
 
 ::可能会改变的坐标需要和前一天的界面进行对比看是否有变化----------------------------------

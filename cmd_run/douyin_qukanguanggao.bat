@@ -1,7 +1,7 @@
 rem @echo off 
 rem 每二十分钟去做一次看广告任务
   
-set "qukanguanggao_param=%1"
+set "douyin_qukanguanggao_param=%1"
 
 if not defined douyin_last_qu_kan_guang_gao_time (
 	rem echo "go utils_gettimestamp_hmsp"
@@ -17,7 +17,7 @@ set /a "sec_count=%douyin_now_qu_kan_guang_gao_time%-%douyin_last_qu_kan_guang_g
 echo 距离上次去看广告时间：%sec_count%
 
 if %sec_count% gtr %douyin_qukanguanggaorenwujiange% (
-	rem echo 可以去看广告
+	echo 可以去看广告
 	call :ke_kan_guang_gao
 	goto :eof
 )
@@ -25,7 +25,7 @@ if %sec_count% gtr %douyin_qukanguanggaorenwujiange% (
 
 rem pause
 goto :eof
-====================================
+::====================================
 
 :get_last_qu_kan_guang_gao_time
 call utils_gettimestamp_hms.bat douyin_last_qu_kan_guang_gao_time
@@ -66,7 +66,7 @@ call utils_gettimestamp_hms.bat douyin_last_qu_kan_guang_gao_time
 rem echo 退出去赚钱页面
 adb -s %device_name% shell input keyevent 4
 ping localhost -n 1 > nul
-if %qukanguanggao_param% equ 1 ( 
+if %douyin_qukanguanggao_param% equ 1 ( 
 	echo 回到直播
 	adb -s %device_name% shell input tap %douyin_tap_go_zhi_bo_x% %douyin_tap_go_zhi_bo_y%  
 	ping localhost -n 1 > nul

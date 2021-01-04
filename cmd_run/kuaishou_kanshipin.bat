@@ -8,8 +8,8 @@ echo 开始看视频
 echo 视频暂停15秒 
 ping localhost -n 15 > nul 
  
-echo 点击继续播放视频按钮
-adb -s %device_name% shell input tap %kuaishou_tap_jixubofangshipin_x% %kuaishou_tap_jixubofangshipin_y%
+rem echo 点击继续播放视频按钮
+rem adb -s %device_name% shell input tap %kuaishou_tap_jixubofangshipin_x% %kuaishou_tap_jixubofangshipin_y%
 
 echo 视频滑动翻页 
 adb -s %device_name% shell input swipe 10 477 10 0
@@ -18,6 +18,8 @@ adb -s %device_name% shell input swipe 10 477 10 0
 echo 运行开宝箱程序
 call kuaishou_kaibaoxiang.bat
 
+echo 运行全程序逻辑判断
+call alltask_check.bat 4
 
 echo 判断视频时长
 call :panduan_shipin_time

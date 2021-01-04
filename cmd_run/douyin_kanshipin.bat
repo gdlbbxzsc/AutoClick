@@ -18,6 +18,10 @@ call douyin_kaibaoxiang.bat 0
 echo 是否看广告任务%boo_douyin_kanguanggao%
 if %boo_douyin_kanguanggao% equ 1 call :shipinkekanguanggaorenwu
 
+
+echo 运行全程序逻辑判断
+call alltask_check.bat 3
+
 echo 判断视频时长
 call :panduan_shipin_time
 

@@ -1,7 +1,7 @@
 rem @echo off 
 rem 判断是否可以开宝箱 条件 从打开程序开始每隔二十分钟打开一次宝箱
    
-set "kaibaoxiang_param=%1"
+set "douyin_kaibaoxiang_param=%1"
 
 if not defined douyin_last_kai_bao_xiang_time (
 	rem echo "go utils_gettimestamp_hmsp"
@@ -27,7 +27,7 @@ if %sec_count% gtr %douyin_baoxiangjiange% (
 
 rem pause
 goto :eof
-====================================
+::====================================
 
 :get_last_kai_bao_xiang_time
 call utils_gettimestamp_hms.bat douyin_last_kai_bao_xiang_time
@@ -35,7 +35,7 @@ rem echo douyin_last_kai_bao_xiang_time:%douyin_last_kai_bao_xiang_time%
 goto :eof
 
 :ke_kai_bao_xiang 
-if %kaibaoxiang_param% equ 1 ( 
+if %douyin_kaibaoxiang_param% equ 1 ( 
 	echo 退出直播去开宝箱
 	adb -s %device_name% shell input keyevent 4 
 	ping localhost -n 1 > nul
@@ -71,7 +71,7 @@ call utils_gettimestamp_hms.bat douyin_last_kai_bao_xiang_time
 echo 退出去赚钱页面
 adb -s %device_name% shell input keyevent 4
 ping localhost -n 1 > nul
-if %kaibaoxiang_param% equ 1 ( 
+if %douyin_kaibaoxiang_param% equ 1 ( 
 	echo 回到直播
 	adb -s %device_name% shell input tap %douyin_tap_go_zhi_bo_x% %douyin_tap_go_zhi_bo_y%  
 	ping localhost -n 1 > nul

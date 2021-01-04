@@ -28,6 +28,11 @@ call douyin_kaibaoxiang.bat 1
 echo 是否看广告任务%boo_douyin_kanguanggao%
 if %boo_douyin_kanguanggao% equ 1 call :zhibokekanguanggaorenwu
 
+
+echo 运行全程序逻辑判断
+call alltask_check.bat 3
+
+
 echo 判断直播时长
 call :panduan_zhibo_time
 
@@ -68,7 +73,7 @@ set "is_tui_chu_zhi_bo=0"
 
 rem pause
 goto :eof
-====================================
+::====================================
 
 :get_last_kai_zhi_bo_time
 call utils_gettimestamp_hms.bat douyin_last_kai_zhi_bo_time

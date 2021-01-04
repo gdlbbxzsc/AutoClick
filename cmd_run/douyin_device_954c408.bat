@@ -1,4 +1,4 @@
-title 954c408-china
+ 
 ::=================
 echo ≈‰÷√±‰¡ø∂∂“Ù
 
@@ -113,5 +113,4 @@ set "douyin_tap_go_chifan_y=1023"
 rem µ„ª˜≥‘∑π ’«Æ x y-------------
 set "douyin_tap_shou_chifan_x=542"
 set "douyin_tap_shou_chifan_y=972"
-
 ::=================
