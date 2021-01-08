@@ -33,7 +33,7 @@
 
          <!--残障服务-->
          <service
-         android:name=".AutoClickAccessibilityService"
+         android:name=".service.AutoClickAccessibilityService"
          android:exported="false"
          android:label="自动控制"
          android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
