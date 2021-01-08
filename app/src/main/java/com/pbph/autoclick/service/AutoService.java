@@ -24,11 +24,11 @@ public class AutoService extends Service {
     /**
      * 模拟点击的ADB命令
      */
-    private static String ADB_SHELL = "input tap 668 581 \n";
+    private static final String ADB_SHELL = "input tap 668 581 \n";
     /**
      * 目标包名
      */
-    private static String PACKAGE_NAME = "com.meizu.media.music";
+    private static final String PACKAGE_NAME = "com.meizu.media.music";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -101,10 +101,7 @@ public class AutoService extends Service {
         else
             name = getForegroundApp();
 
-        if (!TextUtils.isEmpty(name) && PACKAGE_NAME.equalsIgnoreCase(name)) {
-            return true;
-        }
-        return false;
+        return !TextUtils.isEmpty(name) && PACKAGE_NAME.equalsIgnoreCase(name);
     }
 
     /**

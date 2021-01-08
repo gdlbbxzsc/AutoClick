@@ -33,8 +33,8 @@ public class MainActivity extends Activity {
         checkUsagePermission();
 
         setContentView(R.layout.activity_main);
-        tv_xy = (TextView) findViewById(R.id.tv_xy);
-        tv_btn = (TextView) findViewById(R.id.tv_btn);
+        tv_xy = findViewById(R.id.tv_xy);
+        tv_btn = findViewById(R.id.tv_btn);
 
 
         tv_btn.setOnClickListener(v -> {
@@ -55,6 +55,12 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+
+
+
+
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -134,4 +140,7 @@ public class MainActivity extends Activity {
             return false;
         }
     }
+//    val intent = packageManager.getLaunchIntentForPackage("com.tencent.mm")
+//    startActivity(intent)
+//    startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
 }

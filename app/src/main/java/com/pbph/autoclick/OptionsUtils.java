@@ -53,6 +53,6 @@ public class OptionsUtils {
     }
 
     public enum OptionInputType {
-        time, xy1, xy2, none;
+        time, xy1, xy2, none
     }
 }

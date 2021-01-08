@@ -55,8 +55,8 @@ public class OptionItemActivity extends Activity {
 
     OptionModel nowOptionModel;
 
-    private int requestCode_xy1 = 1001;
-    private int requestCode_xy2 = 1002;
+    private final int requestCode_xy1 = 1001;
+    private final int requestCode_xy2 = 1002;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class OptionItemActivity extends Activity {
             changeOptionBoard();
         });
 
-        tv_optionName = (TextView) findViewById(R.id.tv_optionName);
+        tv_optionName = findViewById(R.id.tv_optionName);
 
         tvchoose = findViewById(R.id.tvchoose);
         tvchoose.setOnClickListener(v -> {
@@ -89,27 +89,27 @@ public class OptionItemActivity extends Activity {
             listView.setVisibility(View.VISIBLE);
         });
 
-        edtexpl = (TextView) findViewById(R.id.edtexpl);
+        edtexpl = findViewById(R.id.edtexpl);
 
 
-        llxy1 = (LinearLayout) findViewById(R.id.llxy1);
-        edtx1 = (EditText) findViewById(R.id.edtx1);
-        edty1 = (EditText) findViewById(R.id.edty1);
-        btnxy1 = (Button) findViewById(R.id.btnxy1);
+        llxy1 = findViewById(R.id.llxy1);
+        edtx1 = findViewById(R.id.edtx1);
+        edty1 = findViewById(R.id.edty1);
+        btnxy1 = findViewById(R.id.btnxy1);
         btnxy1.setOnClickListener(v -> getXY(requestCode_xy1));
 
-        llxy2 = (LinearLayout) findViewById(R.id.llxy2);
-        edtx2 = (EditText) findViewById(R.id.edtx2);
-        edty2 = (EditText) findViewById(R.id.edty2);
-        btnxy2 = (Button) findViewById(R.id.btnxy2);
+        llxy2 = findViewById(R.id.llxy2);
+        edtx2 = findViewById(R.id.edtx2);
+        edty2 = findViewById(R.id.edty2);
+        btnxy2 = findViewById(R.id.btnxy2);
         btnxy2.setOnClickListener(v -> getXY(requestCode_xy2));
 
 
-        llwait = (LinearLayout) findViewById(R.id.llwait);
-        edtwait = (EditText) findViewById(R.id.edtwait);
+        llwait = findViewById(R.id.llwait);
+        edtwait = findViewById(R.id.edtwait);
 
 
-        add = (TextView) findViewById(R.id.add);
+        add = findViewById(R.id.add);
         add.setOnClickListener(v -> add());
 
         nowOptionModel = null;

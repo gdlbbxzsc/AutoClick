@@ -5,6 +5,9 @@ import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+//https://blog.csdn.net/siyujiework/article/details/88996145
+//https://blog.csdn.net/tangpunang5844/article/details/86699572
+//https://blog.csdn.net/weimingjue/article/details/82744146
 //可参考 https://www.jianshu.com/p/4cd8c109cdfb
 public class AutoClickAccessibilityService extends AccessibilityService {
 
