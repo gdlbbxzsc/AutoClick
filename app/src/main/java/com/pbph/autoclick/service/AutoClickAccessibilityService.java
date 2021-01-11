@@ -18,6 +18,11 @@ import java.util.List;
 
 //https://blog.csdn.net/siyujiework/article/details/88996145 root权限下 自动授权无障碍
 https://www.jianshu.com/p/4cd8c109cdfb 参考
+
+        AccessibilityEvent    https://blog.csdn.net/sqlaowen/article/details/85100173
+
+
+      api  http://www.android-doc.com/reference/android/view/accessibility/AccessibilityEvent.html
 public class AutoClickAccessibilityService extends AccessibilityService {
 
     @Override
@@ -33,6 +38,11 @@ public class AutoClickAccessibilityService extends AccessibilityService {
     //实现辅助功能
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        event.getAction();
+        event.getContentChangeTypes();
+        event.getEventType();
+        event.getEventTime()
+
         int eventType = event.getEventType();
         switch (eventType) {
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
