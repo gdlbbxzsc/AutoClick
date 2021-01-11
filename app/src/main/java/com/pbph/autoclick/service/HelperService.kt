@@ -67,14 +67,6 @@
 //                }
 //            }
 //
-//            //            //滚动的时候也去监听红包，不过有点卡
-//////            AccessibilityEvent.TYPE_VIEW_SCROLLED -> {
-//////                if (className == "android.widget.ListView") {
-//////                    openRedPacket()
-//////                }
-//////            }
-////        }
-////    }
 //        }
 //    }
 //
@@ -302,24 +294,35 @@
 //        }
 //    }
 //
-//    //遍历控件的方法
-//    fun recycle(info: AccessibilityNodeInfo) {
-//        if (info.childCount == 0) {
-//            Log.i(TAG, "child widget----------------------------" + info.className.toString())
-//            Log.i(TAG, "showDialog:" + info.canOpenPopup())
-//            Log.i(TAG, "Text：" + info.text)
-//            Log.i(TAG, "windowId:" + info.windowId)
-//            Log.i(TAG, "desc:" + info.contentDescription)
-//        } else {
-//            (0 until info.childCount)
-//                    .filter { info.getChild(it) != null }
-//                    .forEach { recycle(info.getChild(it)) }
-//        }
-//    }
+//
 //
 //    private fun performBackClick() {
 //        handler.postDelayed({ performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK) }, 1300L)
 //        Log.e(TAG, "点击返回")
 //    }
 //
+//}
+
+///**
+// * 深度优先遍历寻找目标节点
+// */
+//private void DFS(AccessibilityNodeInfo rootInfo) {
+//    if (rootInfo == null || TextUtils.isEmpty(rootInfo.getClassName())) {
+//        return;
+//    }
+//    if (!"android.widget.GridView".equals(rootInfo.getClassName())) {
+//        for (int i = 0; i < rootInfo.getChildCount(); i++) {
+//            DFS(rootInfo.getChild(i));
+//        }
+//    } else {
+//        AccessibilityNodeInfo GridViewInfo = rootInfo;
+//        for (int i = 0; i < GridViewInfo.getChildCount(); i++) {
+//            final AccessibilityNodeInfo frameLayoutInfo = GridViewInfo.getChild(i);
+//            final AccessibilityNodeInfo childInfo = frameLayoutInfo.getChild(0);
+//            String text = childInfo.getText().toString();
+//            if (text.equals("专栏")) {
+//                click(frameLayoutInfo);
+//            }
+//        }
+//    }
 //}

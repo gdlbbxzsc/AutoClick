@@ -3,6 +3,8 @@ package com.pbph.autoclick.service;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
@@ -14,11 +16,13 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-//https://blog.csdn.net/siyujiework/article/details/88996145
-//https://blog.csdn.net/tangpunang5844/article/details/86699572
-//https://blog.csdn.net/weimingjue/article/details/82744146
-//可参考 https://www.jianshu.com/p/4cd8c109cdfb
+//https://blog.csdn.net/siyujiework/article/details/88996145 root权限下 自动授权无障碍
+https://www.jianshu.com/p/4cd8c109cdfb 参考
 public class AutoClickAccessibilityService extends AccessibilityService {
+
+    @Override
+    public void onInterrupt() {
+    }
 
     //初始化
     @Override
@@ -29,8 +33,6 @@ public class AutoClickAccessibilityService extends AccessibilityService {
     //实现辅助功能
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-
-
         int eventType = event.getEventType();
         switch (eventType) {
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
@@ -40,38 +42,8 @@ public class AutoClickAccessibilityService extends AccessibilityService {
                 //界面文字改动
                 break;
         }
-
-        AccessibilityNodeInfo rootInfo = getRootInActiveWindow();
-        DFS(rootInfo);
     }
 
-    @Override
-    public void onInterrupt() {
-    }
-
-    /**
-     * 深度优先遍历寻找目标节点
-     */
-    private void DFS(AccessibilityNodeInfo rootInfo) {
-        if (rootInfo == null || TextUtils.isEmpty(rootInfo.getClassName())) {
-            return;
-        }
-        if (!"android.widget.GridView".equals(rootInfo.getClassName())) {
-            for (int i = 0; i < rootInfo.getChildCount(); i++) {
-                DFS(rootInfo.getChild(i));
-            }
-        } else {
-            AccessibilityNodeInfo GridViewInfo = rootInfo;
-            for (int i = 0; i < GridViewInfo.getChildCount(); i++) {
-                final AccessibilityNodeInfo frameLayoutInfo = GridViewInfo.getChild(i);
-                final AccessibilityNodeInfo childInfo = frameLayoutInfo.getChild(0);
-                String text = childInfo.getText().toString();
-                if (text.equals("专栏")) {
-                    click(frameLayoutInfo);
-                }
-            }
-        }
-    }
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,12 +51,8 @@ public class AutoClickAccessibilityService extends AccessibilityService {
     //    点击该控件 true表示点击成功
     public static boolean click(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
-
-        if (!nodeInfo.isClickable()) {
-            return false;
-        }
+        if (!nodeInfo.isClickable()) return false;
         nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-
         nodeInfo.recycle();
         return true;
     }
@@ -92,18 +60,24 @@ public class AutoClickAccessibilityService extends AccessibilityService {
     //    点击该控件 true表示点击成功如果当前控件不可点击 查找其父类控件进行点击
     public static boolean clickOrParent(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
-
-        if (!nodeInfo.isClickable()) {
-            return click(nodeInfo.getParent());
-        }
+        if (!nodeInfo.isClickable()) return clickOrParent(nodeInfo.getParent());
         nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-
         nodeInfo.recycle();
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void click7(AccessibilityNodeInfo nodeInfo) {
+        Rect absXY = new Rect();
+        nodeInfo.getBoundsInScreen(absXY);
+        click7(getCenter(absXY));
+    }
 
-    // 点击指定位置7.0以上
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void click7(Point point) {
+        click7(point.x, point.y);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void click7(int x, int y) {
         Path path = new Path();
@@ -113,7 +87,34 @@ public class AutoClickAccessibilityService extends AccessibilityService {
                 (path, 0, 100)).build(), null, null);
     }
 
-    //    长按指定位置7.0以上
+    public static boolean longClick(AccessibilityNodeInfo nodeInfo) {
+        if (nodeInfo == null) return false;
+        if (!nodeInfo.isLongClickable()) return false;
+        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+        nodeInfo.recycle();
+        return true;
+    }
+
+    public static boolean longClickOrParent(AccessibilityNodeInfo nodeInfo) {
+        if (nodeInfo == null) return false;
+        if (!nodeInfo.isLongClickable()) return longClickOrParent(nodeInfo.getParent());
+        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+        nodeInfo.recycle();
+        return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void longClick7(AccessibilityNodeInfo nodeInfo) {
+        Rect absXY = new Rect();
+        nodeInfo.getBoundsInScreen(absXY);
+        longClick7(getCenter(absXY));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void longClick7(Point point) {
+        longClick7(point.x, point.y);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void longClick7(int x, int y) {
         Path path = new Path();
@@ -125,7 +126,7 @@ public class AutoClickAccessibilityService extends AccessibilityService {
                 (path, 0, 1000)).build(), null, null);
     }
 
-    //    立即发送移动的手势7.0以上
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void move7(Path path, long mills) {
         dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
@@ -193,8 +194,6 @@ public class AutoClickAccessibilityService extends AccessibilityService {
                     rootInfo.recycle();
                     return returnInfo3;
                 }
-            default:
-                throw new RuntimeException("由于时间有限，并且多了也没什么用，所以IdTF和TextTF只能有一个");
         }
         rootInfo.recycle();
         return null;
@@ -309,5 +308,12 @@ public class AutoClickAccessibilityService extends AccessibilityService {
                 child.recycle();
             }
         }
+    }
+
+    public static Point getCenter(Rect absXY) {
+        Point point = new Point();
+        point.x = absXY.left + (absXY.right - absXY.left) / 2;
+        point.y = absXY.top + (absXY.bottom - absXY.top) / 2;
+        return point;
     }
 }

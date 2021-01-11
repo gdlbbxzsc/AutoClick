@@ -25,7 +25,8 @@ public abstract class AbstractTF<T> {
      * 找id，就是findAccessibilityNodeInfosByViewId方法
      * 和找text一样效率最高，如果能找到，尽量使用这个
      */
-    private static class IdTF extends AbstractTF<String> implements IdTextTF {
+    private static class IdTF extends AbstractTF<String> {
+//            implements IdTextTF {
         private IdTF(String idFullName) {
             super(idFullName, true);
         }
@@ -36,30 +37,31 @@ public abstract class AbstractTF<T> {
         }
 
 
-        @Override
-        public AccessibilityNodeInfo findFirst(AccessibilityNodeInfo root) {
-            List<AccessibilityNodeInfo> list = root.findAccessibilityNodeInfosByViewId(mCheckData);
-            if (list == null || list.isEmpty()) {
-                return null;
-            }
-            for (int i = 1; i < list.size(); i++) {//其他的均回收
-                list.get(i).recycle();
-            }
-            return list.get(0);
-        }
-
-
-        @Override
-        public List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo root) {
-            return root.findAccessibilityNodeInfosByViewId(mCheckData);
-        }
+//        @Override
+//        public AccessibilityNodeInfo findFirst(AccessibilityNodeInfo root) {
+//            List<AccessibilityNodeInfo> list = root.findAccessibilityNodeInfosByViewId(mCheckData);
+//            if (list == null || list.isEmpty()) {
+//                return null;
+//            }
+//            for (int i = 1; i < list.size(); i++) {//其他的均回收
+//                list.get(i).recycle();
+//            }
+//            return list.get(0);
+//        }
+//
+//
+//        @Override
+//        public List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo root) {
+//            return root.findAccessibilityNodeInfosByViewId(mCheckData);
+//        }
     }
 
     /**
      * 普通text，就是findAccessibilityNodeInfosByText方法
      * 和找id一样效率最高，如果能找到，尽量使用这个
      */
-    private static class TextTF extends AbstractTF<String> implements IdTextTF {
+    private static class TextTF extends AbstractTF<String> {
+//            implements IdTextTF {
         private TextTF(String text, boolean isEquals) {
             super(text, isEquals);
         }
@@ -70,48 +72,48 @@ public abstract class AbstractTF<T> {
         }
 
 
-        @Override
-        public AccessibilityNodeInfo findFirst(AccessibilityNodeInfo root) {
-            List<AccessibilityNodeInfo> list = root.findAccessibilityNodeInfosByText(mCheckData);
-            if (list == null || list.isEmpty()) {
-                return null;
-            }
-            if (mIsEquals) {
-                AccessibilityNodeInfo returnInfo = null;
-                for (AccessibilityNodeInfo info : list) {
-                    if (returnInfo == null && info.getText() != null && mCheckData.equals(info.getText().toString())) {
-                        returnInfo = info;
-                    } else {
-                        info.recycle();
-                    }
-                }
-                return returnInfo;
-            } else {
-                return list.get(0);
-            }
-        }
-
-
-        @Override
-        public List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo root) {
-            List<AccessibilityNodeInfo> list = root.findAccessibilityNodeInfosByText(mCheckData);
-            if (list == null || list.isEmpty()) {
-                return null;
-            }
-            if (mIsEquals) {
-                ArrayList<AccessibilityNodeInfo> listNew = new ArrayList<>();
-                for (AccessibilityNodeInfo info : list) {
-                    if (info.getText() != null && mCheckData.equals(info.getText().toString())) {
-                        listNew.add(info);
-                    } else {
-                        info.recycle();
-                    }
-                }
-                return listNew;
-            } else {
-                return list;
-            }
-        }
+//        @Override
+//        public AccessibilityNodeInfo findFirst(AccessibilityNodeInfo root) {
+//            List<AccessibilityNodeInfo> list = root.findAccessibilityNodeInfosByText(mCheckData);
+//            if (list == null || list.isEmpty()) {
+//                return null;
+//            }
+//            if (mIsEquals) {
+//                AccessibilityNodeInfo returnInfo = null;
+//                for (AccessibilityNodeInfo info : list) {
+//                    if (returnInfo == null && info.getText() != null && mCheckData.equals(info.getText().toString())) {
+//                        returnInfo = info;
+//                    } else {
+//                        info.recycle();
+//                    }
+//                }
+//                return returnInfo;
+//            } else {
+//                return list.get(0);
+//            }
+//        }
+//
+//
+//        @Override
+//        public List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo root) {
+//            List<AccessibilityNodeInfo> list = root.findAccessibilityNodeInfosByText(mCheckData);
+//            if (list == null || list.isEmpty()) {
+//                return null;
+//            }
+//            if (mIsEquals) {
+//                ArrayList<AccessibilityNodeInfo> listNew = new ArrayList<>();
+//                for (AccessibilityNodeInfo info : list) {
+//                    if (info.getText() != null && mCheckData.equals(info.getText().toString())) {
+//                        listNew.add(info);
+//                    } else {
+//                        info.recycle();
+//                    }
+//                }
+//                return listNew;
+//            } else {
+//                return list;
+//            }
+//        }
     }
 
     /**
@@ -185,13 +187,13 @@ public abstract class AbstractTF<T> {
         }
     }
 
-    public interface IdTextTF {
-
-        AccessibilityNodeInfo findFirst(AccessibilityNodeInfo root);
-
-
-        List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo root);
-    }
+//    public interface IdTextTF {
+//
+//        AccessibilityNodeInfo findFirst(AccessibilityNodeInfo root);
+//
+//
+//        List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo root);
+//    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 创建方法
