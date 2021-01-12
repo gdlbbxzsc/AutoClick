@@ -1,0 +1,1 @@
+set "douyin_shipin=com.ss.android.ugc.aweme.splash.SplashActivity" 
