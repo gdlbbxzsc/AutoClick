@@ -1,4 +1,4 @@
- @echo off 
+ rem @echo off 
 setlocal enabledelayedexpansion
 
 set "root_path=%~dp0"
@@ -35,11 +35,12 @@ echo 请选择操作：
 echo 滑动测试 h
 echo 查看界面 c
 echo ---
-echo 全程序 a 
-echo 抖音程序 3 [r] 
-echo 快手程序 4 [r] 
-echo 淘宝程序 5 [r] 
-echo 头条程序 6 [r]
+echo 全程序	a 
+echo 全任务	b 
+echo 抖音程序	3 [r] 
+echo 快手程序	4 [r] 
+echo 淘宝程序	5 [r] 
+echo 头条程序	6 [r]
 echo ---
 echo 重选 0 
 echo =======================
@@ -61,6 +62,21 @@ if "%main_input%"=="c" (
 	)
 	goto choose_run_command
 ) 
+
+
+
+if "%main_input%"=="b" ( 
+
+	title %device_name%-b
+
+	echo 运行全程序逻辑判断
+	call %root_path%alltask_check.bat 0
+ 
+	echo "%device_name%-b运行完成" >%log_path%
+	start %log_path%
+
+	goto choose_run_command
+)
 
 if "%main_input%"=="a" ( 
 

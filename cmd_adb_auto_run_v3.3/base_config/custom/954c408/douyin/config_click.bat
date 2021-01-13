@@ -37,30 +37,33 @@ set "douyin_tap_task_x=898"
 rem 滑动到广告按钮 
 set "douyin_swipe_to_guanggao_y=200"  
 rem 点击广告 
-set "douyin_tap_go_guang_gao_y=282"
-
-
-
-rem 滑动到看小说按钮 
-set "douyin_swipe_to_kanxiaoshuo_y=400"   
-rem 点击看小说 
-set "douyin_tap_go_kanxiaoshuo_y=1428" 
-rem 点击看小说书名 x y 
-set "douyin_tap_go_kanxiaoshuo_name_y=914"  
-
-
-
-rem 滑动到走路按钮 
-set "douyin_swipe_to_zoulu_y=400"   
-rem 点击走路  
-set "douyin_tap_go_zoulu_y=901" 
-rem 点击走路收钱 x y
-set "douyin_tap_shou_zoulu_x=542"
-set "douyin_tap_shou_zoulu_y=972"
+set "douyin_tap_go_guang_gao_y=528"
 
 
 
 rem 滑动到看商品 
 set "douyin_swipe_to_kanshangpin_y=200"   
 rem 点击看商品  
-set "douyin_tap_go_kanshangpin_y=573" 
+set "douyin_tap_go_kanshangpin_y=828" 
+
+
+
+rem 滑动到看小说按钮 
+set "douyin_swipe_to_kanxiaoshuo_y=500"   
+rem 点击看小说 
+set "douyin_tap_go_kanxiaoshuo_y=1213" 
+rem 点击看小说书名 x y 
+set "douyin_tap_go_kanxiaoshuo_name_y=914"  
+
+
+
+rem 滑动到走路按钮 
+set "douyin_swipe_to_zoulu_y=500"   
+rem 点击走路  
+set "douyin_tap_go_zoulu_y=707" 
+rem 点击走路收钱 x y
+set "douyin_tap_shou_zoulu_x=542"
+set "douyin_tap_shou_zoulu_y=972"
+
+
+

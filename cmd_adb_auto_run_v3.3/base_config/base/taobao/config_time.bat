@@ -5,7 +5,7 @@ set "taobao_baoxiangjiange=125"
 call %root_path%utils\utils_sp_get.bat taobao_baoxiangjiange  
 
 rem 看视频总时长
-set "taobao_kanshipinzongshichang=3000"
+set "taobao_kanshipinzongshichang=2500"
 
 rem 看直播总时长
-set "taobao_kanzhibozongshichang=3000"
+set "taobao_kanzhibozongshichang=2500"

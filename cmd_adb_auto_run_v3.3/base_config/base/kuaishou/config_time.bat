@@ -4,4 +4,4 @@ rem 宝箱间隔
 set "kuaishou_baoxiangjiange=1210"
 
 rem 看视频总时长
-set "kuaishou_kanshipinzongshichang=3000"
+set "kuaishou_kanshipinzongshichang=4000"

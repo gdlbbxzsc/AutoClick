@@ -4,7 +4,7 @@ rem 宝箱间隔
 set "douyin_baoxiangjiange=1210"
 
 rem 看视频总时长
-set "douyin_kanshipinzongshichang=3000"
+set "douyin_kanshipinzongshichang=4000"
 
 rem 看直播总时长
 set "douyin_kanzhibozongshichang=1800"
