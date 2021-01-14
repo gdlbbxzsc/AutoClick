@@ -3,7 +3,7 @@ if %boo_douyin_zoulu% equ 0 goto :eof
 
 echo 点击去赚钱
 adb -s %device_name% shell input tap %douyin_tap_go_zhuan_qian_x% %douyin_tap_go_zhuan_qian_y%
-ping localhost -n 5 > nul
+ping localhost -n 6 > nul
 
 echo 将去赚钱滑动到顶部 
 call %root_path%utils\utils_huadongdingbu.bat  
@@ -18,7 +18,7 @@ adb -s %device_name% shell input tap %douyin_tap_task_x% %douyin_tap_go_zoulu_y%
 ping localhost -n 5 > nul
 
 echo 点击走路收钱
-adb -s %device_name% shell input tap %douyin_tap_shou_zoulu_x% %douyin_tap_shou_zoulu_y% 
+adb -s %device_name% shell input tap %center_x% %douyin_tap_shou_zoulu_y% 
 ping localhost -n 1 > nul
 
 echo 退出走路

@@ -1,6 +1,6 @@
 echo 设置全程序程序模式
 
-set "boo_alltask_run=0" 
+set "boo_alltask_run=1" 
 
 ::-------------------------------------------
 echo 配置程序位置变量

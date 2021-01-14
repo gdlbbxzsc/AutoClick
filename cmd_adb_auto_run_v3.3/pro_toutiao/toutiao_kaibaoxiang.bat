@@ -1,12 +1,6 @@
 set "toutiao_kaibaoxiang_param=%1"
 
-call %root_path%utils\utils_sp_get.bat toutiao_last_kai_bao_xiang_time 
-
-if not defined toutiao_last_kai_bao_xiang_time ( 
-	call :get_toutiao_last_kai_bao_xiang_time
-)  
-
-set "toutiao_now_kai_bao_xiang_time=" 
+call %root_path%utils\utils_sp_get.bat toutiao_last_kai_bao_xiang_time  
 call %root_path%utils\utils_gettimestamp_hms.bat toutiao_now_kai_bao_xiang_time 
 
 
@@ -20,10 +14,7 @@ if %sec_count% gtr %toutiao_baoxiangjiange% (
  
 goto :eof
 
-::================= 
-:get_toutiao_last_kai_bao_xiang_time
-call %root_path%utils\utils_gettimestamp_hms.bat toutiao_last_kai_bao_xiang_time 
-goto :eof
+ 
 
 ::================= 
 :ke_kai_bao_xiang 

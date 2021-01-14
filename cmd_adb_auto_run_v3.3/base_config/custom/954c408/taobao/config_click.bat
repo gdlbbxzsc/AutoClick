@@ -85,7 +85,7 @@ set "taobao_tap_task_zoulu_y=1100"
 
 
 
-set "taobao_tap_task_rw_zoulu_x=893"
+set "taobao_tap_task_rw_zoulu_x=914"
 rem 直播60
 set "taobao_tap_task_rw_zoulu_y1=872" 
 rem 视频30
@@ -97,5 +97,5 @@ set "taobao_tap_task_rw_zoulu_y4=1509"
 rem 视频60
 set "taobao_tap_task_rw_zoulu_y5=1717" 
 rem 直播30
-set "taobao_tap_task_rw_zoulu_y6=1905" 
+set "taobao_tap_task_rw_zoulu_y6=1910" 
 

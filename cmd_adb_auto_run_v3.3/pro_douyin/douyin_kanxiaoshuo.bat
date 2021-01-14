@@ -3,7 +3,7 @@ if %boo_douyin_kanxiaoshuo% equ 0 goto :eof
 
 echo 点击去赚钱
 adb -s %device_name% shell input tap %douyin_tap_go_zhuan_qian_x% %douyin_tap_go_zhuan_qian_y%
-ping localhost -n 2 > nul
+ping localhost -n 6 > nul
 
 echo 将去赚钱滑动到顶部
 call %root_path%utils\utils_huadongdingbu.bat   
@@ -41,15 +41,15 @@ if %douyin_xiaoshuo_times% leq 200 (
  
 echo 推出小说
 adb -s %device_name% shell input keyevent 4
-ping localhost -n 1 > nul 
+ping localhost -n 4 > nul 
 
 echo 退出书架
 adb -s %device_name% shell input keyevent 4
-ping localhost -n 1 > nul 
+ping localhost -n 4 > nul 
 
 rem echo 退出去赚钱页面
 adb -s %device_name% shell input keyevent 4
-ping localhost -n 2 > nul 
+ping localhost -n 4 > nul 
 
 echo 修改任务状态0
 call %root_path%utils\utils_sp_put.bat boo_douyin_kanxiaoshuo 0

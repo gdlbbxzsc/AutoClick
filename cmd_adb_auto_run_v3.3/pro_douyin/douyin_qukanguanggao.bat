@@ -4,12 +4,7 @@ if %boo_douyin_kanguanggao% equ 0 goto :eof
   
 set "douyin_qukanguanggao_param=%1"
 
-call %root_path%utils\utils_sp_get.bat douyin_last_qu_kan_guang_gao_time  
-if not defined douyin_last_qu_kan_guang_gao_time ( 
-	call :get_douyin_last_qu_kan_guang_gao_time
-)  
-
-set "douyin_now_qu_kan_guang_gao_time=" 
+call %root_path%utils\utils_sp_get.bat douyin_last_qu_kan_guang_gao_time   
 call %root_path%utils\utils_gettimestamp_hms.bat douyin_now_qu_kan_guang_gao_time 
 
 set /a "sec_count=%douyin_now_qu_kan_guang_gao_time%-%douyin_last_qu_kan_guang_gao_time%"
@@ -22,10 +17,7 @@ if %sec_count% gtr %douyin_qukanguanggaorenwujiange% (
   
 goto :eof
 
-::================== 
-:get_douyin_last_qu_kan_guang_gao_time
-call %root_path%utils\utils_gettimestamp_hms.bat douyin_last_qu_kan_guang_gao_time 
-goto :eof
+ 
 
 ::==================
 :ke_kan_guang_gao  
@@ -33,6 +25,12 @@ goto :eof
 if %douyin_qukanguanggao_param% equ 900 ( 
 	rem 这里是为全程序判断做的变量修改
 	set "alltask_has_run_result=1" 
+
+	adb -s %device_name% shell  input keyevent 3
+	ping localhost -n 1 > nul
+	echo 点击抖音
+	adb -s %device_name% shell input tap %app_douyin_x% %app_douyin_y%
+	ping localhost -n 16 > nul
 )
 
 if %douyin_qukanguanggao_param% equ 1 ( 

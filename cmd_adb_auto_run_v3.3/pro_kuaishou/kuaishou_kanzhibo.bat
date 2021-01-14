@@ -3,7 +3,7 @@ if %boo_kuaishou_kanzhibo% equ 0 goto :eof
 
 echo µã»÷È¥×¬Ç®
 adb -s %device_name% shell input tap %kuaishou_tap_go_zhuan_qian_x% %kuaishou_tap_go_zhuan_qian_y%
-ping localhost -n 2 > nul
+ping localhost -n 6 > nul
 
 echo ½«È¥×¬Ç®»¬¶¯µ½¶¥²¿
 call %root_path%utils\utils_huadongdingbu.bat   
@@ -29,7 +29,7 @@ echo Ö±²¥»¬¶¯·­Ò³
 adb -s %device_name% shell input swipe 10 477 10 0
 
 echo ÔÝÍ£32Ãë 
-ping localhost -n 32 > nul 
+ping localhost -n 35 > nul 
    
 if %kuaishou_zhibo_times% leq 9 ( 
     goto :xiaoshuo_xun_huan_hua_dong

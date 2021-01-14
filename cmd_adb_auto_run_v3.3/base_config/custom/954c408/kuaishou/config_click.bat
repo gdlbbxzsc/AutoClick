@@ -31,7 +31,7 @@ set "kuaishou_tap_go_zhibo_y=1200"
 rem 滑动到福利任务按钮 
 set "kuaishou_swipe_to_fulirenwu_y=400"   
 rem 点击福利任务  
-set "kuaishou_tap_go_fulirenwu_y=290"
+set "kuaishou_tap_go_fulirenwu_y=320"
 
 
   

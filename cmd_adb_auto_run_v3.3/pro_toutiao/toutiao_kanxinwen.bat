@@ -41,7 +41,7 @@ echo 运行看商品程序
 call %root_path%pro_toutiao\toutiao_qukanshangpin.bat 0
  
 echo 运行全程序逻辑判断
-call %root_path%alltask_check.bat 5
+call %root_path%alltask_check.bat 6
 
 
 echo 判断新闻时长

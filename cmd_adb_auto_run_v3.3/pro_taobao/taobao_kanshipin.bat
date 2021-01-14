@@ -2,8 +2,8 @@ echo 运行看视频:%boo_taobao_kanshipin%
 if %boo_taobao_kanshipin% equ 0 goto :eof 
 
 
-echo 将去赚钱滑动到顶部
-call %root_path%utils\utils_huadongdingbu.bat   
+rem echo 将去赚钱滑动到顶部
+rem call %root_path%utils\utils_huadongdingbu.bat   
 
 echo 滑动到看视频按钮
 adb -s %device_name% shell input swipe 10 %taobao_swipe_to_shipin_y% 10 0  
@@ -19,8 +19,8 @@ ping localhost -n 3 > nul
 
 :shipinxun_huan
  
-echo 暂停20秒 
-ping localhost -n 12 > nul 
+echo 暂停7秒 
+ping localhost -n 7 > nul 
 
 call %root_path%utils\utils_check_activity.bat %taobao_shipin%
 

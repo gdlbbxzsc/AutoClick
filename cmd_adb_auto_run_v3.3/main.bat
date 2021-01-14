@@ -1,4 +1,4 @@
- rem @echo off 
+  @echo off 
 setlocal enabledelayedexpansion
 
 set "root_path=%~dp0"

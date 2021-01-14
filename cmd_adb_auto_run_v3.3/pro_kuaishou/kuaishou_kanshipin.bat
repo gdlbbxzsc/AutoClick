@@ -5,8 +5,8 @@ if %boo_kuaishou_kanshipin% equ 0 goto :eof
 
 
 
-echo ÊÓÆµÔÝÍ£15Ãë 
-ping localhost -n 12 > nul 
+echo ÊÓÆµÔÝÍ£7Ãë 
+ping localhost -n 7 > nul 
 
 
 call %root_path%utils\utils_check_activity.bat %kuaishou_shipin%

@@ -11,13 +11,7 @@ if %toutiao_shangpinliulan% gtr 3 (
   
 set "toutiao_qukanguanggao_param=%1" 
 
-call %root_path%utils\utils_sp_get.bat toutiao_last_liu_lan_shang_pin_time 
-
-if not defined toutiao_last_liu_lan_shang_pin_time ( 
-	call :get_toutiao_last_liu_lan_shang_pin_time
-)  
-
-set "toutiao_now_liu_lan_shang_pin_time=" 
+call %root_path%utils\utils_sp_get.bat toutiao_last_liu_lan_shang_pin_time  
 call %root_path%utils\utils_gettimestamp_hms.bat toutiao_now_liu_lan_shang_pin_time 
 
 set /a "sec_count=%toutiao_now_liu_lan_shang_pin_time%-%toutiao_last_liu_lan_shang_pin_time%"
@@ -29,12 +23,7 @@ if %sec_count% gtr %toutiao_liulanshangpinrenwujiange% (
 )
   
 goto :eof
-
-::================= 
-:get_toutiao_last_liu_lan_shang_pin_time
-call %root_path%utils\utils_gettimestamp_hms.bat toutiao_last_liu_lan_shang_pin_time 
-goto :eof
-
+ 
 ::================= 
 :ke_kan_guang_gao  
 

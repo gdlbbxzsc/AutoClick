@@ -6,8 +6,8 @@ if %boo_douyin_kanshipin% equ 0 goto :eof
 
 
 
-echo 视频暂停10秒 
-ping localhost -n 10 > nul 
+echo 视频暂停7秒 
+ping localhost -n 7 > nul 
 
 call %root_path%utils\utils_check_activity.bat %douyin_shipin%
 
@@ -22,6 +22,12 @@ call %root_path%pro_douyin\douyin_qukanguanggao.bat 0
 
 echo 运行看商品程序
 call %root_path%pro_douyin\douyin_qukanshangpin.bat 0
+
+echo 运行吃饭程序
+call %root_path%pro_douyin\douyin_chifan.bat 0
+
+echo 运行睡觉程序
+call %root_path%pro_douyin\douyin_shuijiao.bat 0
  
 echo 运行全程序逻辑判断
 call %root_path%alltask_check.bat 3

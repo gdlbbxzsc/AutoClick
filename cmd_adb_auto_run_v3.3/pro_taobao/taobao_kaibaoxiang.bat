@@ -1,11 +1,6 @@
 set "kaibaoxiang_param=%1"
     
-call %root_path%utils\utils_sp_get.bat taobao_last_kai_bao_xiang_time 
-if not defined taobao_last_kai_bao_xiang_time ( 
-	call :get_last_kai_bao_xiang_time
-)  
-
-set "taobao_now_kai_bao_xiang_time=" 
+call %root_path%utils\utils_sp_get.bat taobao_last_kai_bao_xiang_time  
 call %root_path%utils\utils_gettimestamp_hms.bat taobao_now_kai_bao_xiang_time 
 
 
@@ -18,12 +13,7 @@ if %sec_count% gtr %taobao_baoxiangjiange% (
 ) 
  
 goto :eof
-
-::=================== 
-:get_last_kai_bao_xiang_time
-call %root_path%utils\utils_gettimestamp_hms.bat taobao_last_kai_bao_xiang_time 
-goto :eof
-
+ 
 ::=================== 
 :ke_kai_bao_xiang 
   
@@ -95,15 +85,15 @@ goto :eof
 rem echo 将去赚钱滑动到顶部
 rem call %root_path%utils\utils_huadongdingbu.bat   
 
-echo 滑动到看直播按钮
-rem adb -s %device_name% shell input swipe 10 %taobao_swipe_to_zhibo_y% 10 0  
-rem adb -s %device_name% shell input swipe 10 %taobao_swipe_to_zhibo_y% 10 0 
+echo 滑动到看视频按钮
 adb -s %device_name% shell input swipe 10 %taobao_swipe_to_zhibo_y% 10 0  
+adb -s %device_name% shell input swipe 10 %taobao_swipe_to_zhibo_y% 10 0  
+adb -s %device_name% shell input swipe 10 %taobao_swipe_to_zhibo_y% 10 0 
 
 
  
 echo 点击看直播
-adb -s %device_name% shell input tap %taobao_tap_go_zhibo_x% %taobao_tap_go_zhibo_y%
+adb -s %device_name% shell input tap %taobao_tap_task_x% %taobao_tap_go_zhibo_y%
 ping localhost -n 3 > nul
 
 goto :eof
@@ -115,13 +105,13 @@ rem echo 将去赚钱滑动到顶部
 rem call %root_path%utils\utils_huadongdingbu.bat   
 
 echo 滑动到看视频按钮
-rem adb -s %device_name% shell input swipe 10 %taobao_swipe_to_shipin_y% 10 0  
-rem adb -s %device_name% shell input swipe 10 %taobao_swipe_to_shipin_y% 10 0  
+adb -s %device_name% shell input swipe 10 %taobao_swipe_to_shipin_y% 10 0  
+adb -s %device_name% shell input swipe 10 %taobao_swipe_to_shipin_y% 10 0  
 adb -s %device_name% shell input swipe 10 %taobao_swipe_to_shipin_y% 10 0 
 
  
 echo 点击看视频
-adb -s %device_name% shell input tap %taobao_tap_go_shipin_x% %taobao_tap_go_shipin_y%
+adb -s %device_name% shell input tap %taobao_tap_task_x% %taobao_tap_go_shipin_y%
 ping localhost -n 3 > nul
 
 goto :eof

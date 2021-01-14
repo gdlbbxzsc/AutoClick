@@ -3,10 +3,11 @@ rem echo %1-------1>:%%1%
 ::=======
  
 set "config_file_today=%date:~0,4%%date:~5,2%%date:~8,2%"
-rem echo config_file_today:%config_file_today%
- 
-if not exist %sp_path%%config_file_today%.txt  goto :eof
+rem echo config_file_today:%config_file_today% ÊÇ·ñ´æÔÚ£¿
 
+
+if not exist %sp_path%%config_file_today%.txt  goto :eof
+rem echo ´æÔÚ
 
 set "config_file_name_pre=%1"
 rem echo config_file_name_pre:%config_file_name_pre%

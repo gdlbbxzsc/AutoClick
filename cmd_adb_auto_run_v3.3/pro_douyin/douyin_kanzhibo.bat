@@ -23,6 +23,12 @@ call %root_path%pro_douyin\douyin_kaibaoxiang.bat 1
 echo 运行看广告程序
 call %root_path%pro_douyin\douyin_qukanguanggao.bat 1
 
+echo 运行吃饭程序
+call %root_path%pro_douyin\douyin_chifan.bat 1
+
+echo 运行睡觉程序
+call %root_path%pro_douyin\douyin_shuijiao.bat 1
+
 echo 运行全程序逻辑判断
 call %root_path%alltask_check.bat 3
 

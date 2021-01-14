@@ -11,13 +11,7 @@ if %douyin_shangpinliulan% gtr 3 (
   
 set "douyin_qukanguanggao_param=%1" 
 
-call %root_path%utils\utils_sp_get.bat douyin_last_liu_lan_shang_pin_time 
-
-if not defined douyin_last_liu_lan_shang_pin_time ( 
-	call :get_douyin_last_liu_lan_shang_pin_time
-)  
-
-set "douyin_now_liu_lan_shang_pin_time=" 
+call %root_path%utils\utils_sp_get.bat douyin_last_liu_lan_shang_pin_time  
 call %root_path%utils\utils_gettimestamp_hms.bat douyin_now_liu_lan_shang_pin_time 
 
 set /a "sec_count=%douyin_now_liu_lan_shang_pin_time%-%douyin_last_liu_lan_shang_pin_time%"
@@ -29,11 +23,7 @@ if %sec_count% gtr %douyin_liulanshangpinrenwujiange% (
 )
   
 goto :eof
-
-::================= 
-:get_douyin_last_liu_lan_shang_pin_time
-call %root_path%utils\utils_gettimestamp_hms.bat douyin_last_liu_lan_shang_pin_time 
-goto :eof
+ 
 
 ::================= 
 :ke_kan_guang_gao  
@@ -60,8 +50,6 @@ adb -s %device_name% shell input swipe 10 %douyin_swipe_to_kanshangpin_y% 10 0
 echo µã»÷ÉÌÆ·
 adb -s %device_name% shell input tap %douyin_tap_task_x% %douyin_tap_go_kanshangpin_y%
  
-ping localhost -n 6 > nul 
-adb -s %device_name% shell input swipe 10 477 10 377
 ping localhost -n 4 > nul 
 adb -s %device_name% shell input swipe 10 477 10 377
 ping localhost -n 4 > nul 
@@ -72,6 +60,14 @@ ping localhost -n 4 > nul
 adb -s %device_name% shell input swipe 10 477 10 377
 ping localhost -n 4 > nul 
 adb -s %device_name% shell input swipe 10 477 10 377
+ping localhost -n 4 > nul 
+adb -s %device_name% shell input swipe 10 477 10 377
+ping localhost -n 4 > nul 
+adb -s %device_name% shell input swipe 10 477 10 377
+ping localhost -n 4 > nul 
+adb -s %device_name% shell input swipe 10 477 10 377 
+ping localhost -n 4 > nul 
+adb -s %device_name% shell input swipe 10 477 10 377 
 
 
 

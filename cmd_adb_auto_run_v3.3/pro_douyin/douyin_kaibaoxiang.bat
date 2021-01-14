@@ -1,12 +1,6 @@
 set "douyin_kaibaoxiang_param=%1"
 
-call %root_path%utils\utils_sp_get.bat douyin_last_kai_bao_xiang_time 
-
-if not defined douyin_last_kai_bao_xiang_time ( 
-	call :get_douyin_last_kai_bao_xiang_time
-)  
-
-set "douyin_now_kai_bao_xiang_time=" 
+call %root_path%utils\utils_sp_get.bat douyin_last_kai_bao_xiang_time  
 call %root_path%utils\utils_gettimestamp_hms.bat douyin_now_kai_bao_xiang_time 
 
 
@@ -19,11 +13,7 @@ if %sec_count% gtr %douyin_baoxiangjiange% (
 ) 
  
 goto :eof
-
-::=================  
-:get_douyin_last_kai_bao_xiang_time
-call %root_path%utils\utils_gettimestamp_hms.bat douyin_last_kai_bao_xiang_time 
-goto :eof
+ 
 
 ::================= 
 :ke_kai_bao_xiang 
@@ -32,7 +22,13 @@ goto :eof
 
 if %douyin_kaibaoxiang_param% equ 900 ( 
 	rem 这里是为全程序判断做的变量修改
-	set "alltask_has_run_result=1
+	set "alltask_has_run_result=1" 
+
+	adb -s %device_name% shell  input keyevent 3
+	ping localhost -n 1 > nul
+	echo 点击抖音
+	adb -s %device_name% shell input tap %app_douyin_x% %app_douyin_y%
+	ping localhost -n 16 > nul
 )
 
 if %douyin_kaibaoxiang_param% equ 1 ( 

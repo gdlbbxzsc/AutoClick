@@ -4,12 +4,7 @@ if %boo_kuaishou_kaibaoxiang% equ 0 goto :eof
 
 set "kuaishou_kaibaoxiang_param=%1"
 
-call %root_path%utils\utils_sp_get.bat kuaishou_last_kai_bao_xiang_time  
-if not defined kuaishou_last_kai_bao_xiang_time ( 
-	call :get_kuaishou_last_kai_bao_xiang_time
-)  
-
-set "kuaishou_now_kai_bao_xiang_time=" 
+call %root_path%utils\utils_sp_get.bat kuaishou_last_kai_bao_xiang_time   
 call %root_path%utils\utils_gettimestamp_hms.bat kuaishou_now_kai_bao_xiang_time 
 
 
@@ -35,6 +30,12 @@ goto :eof
 if %kuaishou_kaibaoxiang_param% equ 900 ( 
 	rem 这里是为全程序判断做的变量修改
 	set "alltask_has_run_result=1" 
+
+	adb -s %device_name% shell  input keyevent 3
+	ping localhost -n 1 > nul
+	echo 点击快手
+	adb -s %device_name% shell input tap %app_kuaishou_x% %app_kuaishou_y%
+	ping localhost -n 16 > nul
 )
   
 echo 去赚钱页面

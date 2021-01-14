@@ -3,7 +3,7 @@ if %boo_kuaishou_fulirenwu% equ 0 goto :eof
 
 echo 点击去赚钱
 adb -s %device_name% shell input tap %kuaishou_tap_go_zhuan_qian_x% %kuaishou_tap_go_zhuan_qian_y%
-ping localhost -n 2 > nul
+ping localhost -n 6 > nul
 
 echo 将去赚钱滑动到顶部
 call %root_path%utils\utils_huadongdingbu.bat   
