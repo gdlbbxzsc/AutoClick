@@ -1,1 +1,0 @@
-set "toutiao_xinwen=.activity.SplashActivity"

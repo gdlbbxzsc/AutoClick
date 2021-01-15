@@ -75,117 +75,51 @@ public class MainActivity extends Activity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
 
-        //屏幕横滑手势
-        findViewById(R.id.bt_main_ShouShi).setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                    Toast.makeText(MainActivity.this, "7.0及以上才能使用手势", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Path path = new Path();
-                path.moveTo(displayMetrics.widthPixels / 2, displayMetrics.heightPixels * 2 / 3);//从屏幕的2/3处开始滑动
-                path.lineTo(10, displayMetrics.heightPixels * 2 / 3);
-                final GestureDescription.StrokeDescription sd = new GestureDescription.StrokeDescription(path, 0, 500);
-                HongBaoService.mService.dispatchGesture(new GestureDescription.Builder().addStroke(sd).build(), new AccessibilityService.GestureResultCallback() {
-                    @Override
-                    public void onCompleted(GestureDescription gestureDescription) {
-                        super.onCompleted(gestureDescription);
-                        Toast.makeText(MainActivity.this, "手势成功", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onCancelled(GestureDescription gestureDescription) {
-                        super.onCancelled(gestureDescription);
-                        Toast.makeText(MainActivity.this, "手势失败，请重启手机再试", Toast.LENGTH_SHORT).show();
-                    }
-                }, null);
-            }
-        });
-
-        //点击指定控件
-        findViewById(R.id.bt_main_DianJi).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AccessibilityNodeInfo ces = HongBaoService.mService.findFirst(AbstractTF.newText("测试控件", true));
-                if (ces == null) {
-                    Utils.toast("找测试控件失败");
-                    return;
-                }
-                HongBaoService.clickView(ces);
-            }
-        });
-
-        //用手势长按指定控件
-        findViewById(R.id.bt_main_ChangAn).setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                    Toast.makeText(MainActivity.this, "7.0及以上才能使用手势", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                AccessibilityNodeInfo ces = HongBaoService.mService.findFirst(AbstractTF.newText("测试控件", true));
-                if (ces == null) {
-                    Utils.toast("找测试控件失败");
-                    return;
-                }
-
+//        //屏幕横滑手势
+//        Path path = new Path();
+//        path.moveTo(displayMetrics.widthPixels / 2, displayMetrics.heightPixels * 2 / 3);//从屏幕的2/3处开始滑动
+//        path.lineTo(10, displayMetrics.heightPixels * 2 / 3);
+//        final GestureDescription.StrokeDescription sd = new GestureDescription.StrokeDescription(path, 0, 500);
+//        HongBaoService.mService.dispatchGesture(new GestureDescription.Builder().addStroke(sd).build(), new AccessibilityService.GestureResultCallback() {
+//            @Override
+//            public void onCompleted(GestureDescription gestureDescription) {
+//                super.onCompleted(gestureDescription);
+//                Toast.makeText(MainActivity.this, "手势成功", Toast.LENGTH_SHORT).show();
+//            }
 //
+//            @Override
+//            public void onCancelled(GestureDescription gestureDescription) {
+//                super.onCancelled(gestureDescription);
+//                Toast.makeText(MainActivity.this, "手势失败，请重启手机再试", Toast.LENGTH_SHORT).show();
+//            }
+//        }, null);
 
-                //这里为了示范手势的效果
-                Rect absXY = new Rect();
-                ces.getBoundsInScreen(absXY);
-//                HongBaoService.mService.dispatchGestureClick(absXY.left + (absXY.right - absXY.left) / 2, absXY.top + (absXY.bottom - absXY.top) / 2);//手势点击效果
-                //手势长按效果
-                //控件正中间
-                HongBaoService.mService.dispatchGestureLongClick(absXY.left + (absXY.right - absXY.left) / 2, absXY.top + (absXY.bottom - absXY.top) / 2);
-            }
-        });
 
-        //用系统的返回效果
-        findViewById(R.id.bt_main_FanHui).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HongBaoService.mService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            }
-        });
+//        //用手势长按指定控件
+//        AccessibilityNodeInfo ces = HongBaoService.mService.findFirst(AbstractTF.newText("测试控件", true));
+//        if (ces == null) {
+//            Utils.toast("找测试控件失败");
+//            return;
+//        }
+//        //这里为了示范手势的效果
+//        Rect absXY = new Rect();
+//        ces.getBoundsInScreen(absXY);
+////                HongBaoService.mService.dispatchGestureClick(absXY.left + (absXY.right - absXY.left) / 2, absXY.top + (absXY.bottom - absXY.top) / 2);//手势点击效果
+//        //手势长按效果
+//        //控件正中间
+//        HongBaoService.mService.dispatchGestureLongClick(absXY.left + (absXY.right - absXY.left) / 2, absXY.top + (absXY.bottom - absXY.top) / 2);
 
-        //测试的控件
-        View viewCes = findViewById(R.id.bt_main_CeShi);
-        viewCes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.toast("'测试控件'被点击了");
-                Log.e(TAG, "onClick: '测试控件'被点击了");
-            }
-        });
-        viewCes.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Utils.toast("'测试控件'被长按了");
-                Log.e(TAG, "onLongClick: '测试控件'被长按了");
-                return true;
-            }
-        });
+
+//        //用系统的返回效果
+//        HongBaoService.mService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+
+
+        //    val intent = packageManager.getLaunchIntentForPackage("com.tencent.mm")
+//    startActivity(intent)
     }
 
 
-//    val intent = packageManager.getLaunchIntentForPackage("com.tencent.mm")
-//    startActivity(intent)
 }

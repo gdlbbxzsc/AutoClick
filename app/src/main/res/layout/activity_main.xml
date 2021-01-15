@@ -9,27 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="5dp"
-        android:text="设置>安全中心>授权管理>ROOT权限管理"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:text="设置>安全>有权查看使用情况的应用里>授权"
-        android:textSize="20dp" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设置>辅助功能>无障碍>授权"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="最好授予开机运行权限"
+        android:text="设置>安全中心>授权管理>ROOT权限管理\n
+设置>安全>有权查看使用情况的应用里>授权\n
+设置>辅助功能>无障碍>授权 最好授予开机运行权限\n
+获取经纬度:开发者选项>指针位置"
         android:textSize="20dp" />
 
     <Button
@@ -46,13 +29,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="5dp"
         android:text="验证"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:text="获取经纬度:开发者选项>指针位置"
         android:textSize="20dp" />
 
 

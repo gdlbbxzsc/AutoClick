@@ -1,1 +1,0 @@
-set "kuaishou_shipin=com.yxcorp.gifshow.HomeActivity" 
