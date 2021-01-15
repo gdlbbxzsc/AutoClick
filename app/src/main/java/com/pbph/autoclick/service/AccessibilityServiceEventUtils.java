@@ -17,7 +17,7 @@ public final class AccessibilityServiceEventUtils {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isClickable()) return false;
         nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-//        nodeInfo.recycle();
+        nodeInfo.recycle();
         return true;
     }
 
@@ -26,7 +26,7 @@ public final class AccessibilityServiceEventUtils {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isClickable()) return clickOrParent(nodeInfo.getParent());
         nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-//        nodeInfo.recycle();
+        nodeInfo.recycle();
         return true;
     }
 
@@ -61,7 +61,7 @@ public final class AccessibilityServiceEventUtils {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isLongClickable()) return false;
         nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
-//        nodeInfo.recycle();
+        nodeInfo.recycle();
         return true;
     }
 
@@ -69,7 +69,7 @@ public final class AccessibilityServiceEventUtils {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isLongClickable()) return longClickOrParent(nodeInfo.getParent());
         nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
-//        nodeInfo.recycle();
+        nodeInfo.recycle();
         return true;
     }
 
