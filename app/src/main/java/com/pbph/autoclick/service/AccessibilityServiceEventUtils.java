@@ -12,42 +12,53 @@ import androidx.annotation.RequiresApi;
 
 public final class AccessibilityServiceEventUtils {
 
+
+    //    点击返回
+    public static boolean back(AccessibilityService service) {
+        return service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+    }
+
+    //    点击home
+    public static boolean home(AccessibilityService service) {
+        return service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
+    }
+
     //    点击该控件 true表示点击成功
     public static boolean click(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isClickable()) return false;
-        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+        boolean b = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         nodeInfo.recycle();
-        return true;
+        return b;
     }
 
     //    点击该控件 true表示点击成功如果当前控件不可点击 查找其父类控件进行点击
     public static boolean clickOrParent(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isClickable()) return clickOrParent(nodeInfo.getParent());
-        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+        boolean b = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         nodeInfo.recycle();
-        return true;
+        return b;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void click7(AccessibilityService service, AccessibilityNodeInfo nodeInfo) {
+    public static boolean click7(AccessibilityService service, AccessibilityNodeInfo nodeInfo) {
         Rect absXY = new Rect();
         nodeInfo.getBoundsInScreen(absXY);
-        click7(service, getCenter(absXY));
+        return click7(service, getCenter(absXY));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void click7(AccessibilityService service, Point point) {
-        click7(service, point.x, point.y);
+    public static boolean click7(AccessibilityService service, Point point) {
+        return click7(service, point.x, point.y);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void click7(AccessibilityService service, int x, int y) {
+    public static boolean click7(AccessibilityService service, int x, int y) {
         Path path = new Path();
         path.moveTo(x - 1, y - 1);
         path.lineTo(x + 1, y + 1);
-        service.dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
+        return service.dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
                 (path, 0, 100)).build(), null, null);
     }
 
@@ -60,39 +71,39 @@ public final class AccessibilityServiceEventUtils {
     public static boolean longClick(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isLongClickable()) return false;
-        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+        boolean b = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
         nodeInfo.recycle();
-        return true;
+        return b;
     }
 
     public static boolean longClickOrParent(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
         if (!nodeInfo.isLongClickable()) return longClickOrParent(nodeInfo.getParent());
-        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+        boolean b = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
         nodeInfo.recycle();
-        return true;
+        return b;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void longClick7(AccessibilityService service, AccessibilityNodeInfo nodeInfo) {
+    public static boolean longClick7(AccessibilityService service, AccessibilityNodeInfo nodeInfo) {
         Rect absXY = new Rect();
         nodeInfo.getBoundsInScreen(absXY);
-        longClick7(service, getCenter(absXY));
+        return longClick7(service, getCenter(absXY));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void longClick7(AccessibilityService service, Point point) {
-        longClick7(service, point.x, point.y);
+    public static boolean longClick7(AccessibilityService service, Point point) {
+        return longClick7(service, point.x, point.y);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void longClick7(AccessibilityService service, int x, int y) {
+    public static boolean longClick7(AccessibilityService service, int x, int y) {
         Path path = new Path();
         path.moveTo(x - 1, y - 1);
         path.lineTo(x, y - 1);
         path.lineTo(x, y);
         path.lineTo(x - 1, y);
-        service.dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
+        return service.dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
                 (path, 0, 1000)).build(), null, null);
     }
 
@@ -103,8 +114,8 @@ public final class AccessibilityServiceEventUtils {
     //
     //
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void move7(AccessibilityService service, Path path, long mills) {
-        service.dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
+    public boolean move7(AccessibilityService service, Path path, long mills) {
+        return service.dispatchGesture(new GestureDescription.Builder().addStroke(new GestureDescription.StrokeDescription
                 (path, 0, mills)).build(), null, null);
     }
 
