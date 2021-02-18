@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
+import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import androidx.annotation.RequiresApi;
@@ -35,6 +36,7 @@ public final class AccessibilityServiceEventUtils {
     //    点击该控件 true表示点击成功如果当前控件不可点击 查找其父类控件进行点击
     public static boolean clickOrParent(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
+        Log.e("===>", "clickOrParent: " +nodeInfo.getClassName() );
         if (!nodeInfo.isClickable()) return clickOrParent(nodeInfo.getParent());
         boolean b = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         nodeInfo.recycle();

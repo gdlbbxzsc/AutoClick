@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeAllMask"
-    android:accessibilityFeedbackType="feedbackGeneric"
-    android:accessibilityFlags="flagReportViewIds|flagRetrieveInteractiveWindows"
+    android:accessibilityFeedbackType="feedbackVisual"
+    android:accessibilityFlags="flagDefault|flagIncludeNotImportantViews|flagReportViewIds|flagRetrieveInteractiveWindows|flagRequestFilterKeyEvents"
     android:canPerformGestures="true"
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
     android:notificationTimeout="100"
+    android:packageNames="com.jianzhiku.zhongrenbang"
    />
-<!--    android:packageNames="com.meizu.media.music"-->
+<!--    https://blog.csdn.net/qq_24800377/article/details/78283662-->
+<!--    flagIncludeNotImportantViews 获取全部控件-->
+<!--    flagReportViewIds 获取控件id-->
+<!--    android:packageNames="com.jianzhiku.zhongrenbang"-->
 
     <!--accessibilityEventTypes:设置响应事件的类型，这里设置typeAllMask，就是响应全部类型的事件-->
     <!--accessibilityFeedbackType:设置回馈给用户的方式，有语音播出和振动，这里使用通用类型-->

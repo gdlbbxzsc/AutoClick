@@ -1,22 +1,25 @@
 package com.pbph.autoclick.service;
 
 import android.accessibilityservice.AccessibilityService;
+import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 //https://blog.csdn.net/siyujiework/article/details/88996145 root权限下 自动授权无障碍
 //参考    https://www.jianshu.com/p/4cd8c109cdfb
 //api     http://www.android-doc.com/reference/android/view/accessibility/AccessibilityEvent.html
-
+//https://blog.csdn.net/qq_24800377/article/details/78283662
 public class AutoClickAccessibilityService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
+        log("onInterrupt");
     }
 
     //初始化
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
+        log("onServiceConnected");
     }
 
     //实现辅助功能
@@ -30,12 +33,13 @@ public class AutoClickAccessibilityService extends AccessibilityService {
 
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED: {//Notification通知变化
-                Wx_HongBao.onAccessibilityEvent(event);
+                // Wx_HongBao.onAccessibilityEvent(event);
             }
             break;
             /////////////
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:  //窗口的内容发生变化，或子树根布局发生变化
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: {//打开了一个PopupWindow，Menu或Dialog
+                ZhongRenBang.onAccessibilityEvent(this, event);
             }
             break;
             /////////////
@@ -109,5 +113,8 @@ public class AutoClickAccessibilityService extends AccessibilityService {
         }
     }
 
+    private void log(String str) {
+        Log.e("====>", str);
+    }
 
 }

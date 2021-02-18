@@ -1,6 +1,5 @@
 package com.pbph.autoclick.service;
 
-import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.ArrayList;
@@ -9,10 +8,9 @@ import java.util.List;
 public final class AccessibilityServiceFindUtils {
 
     //查找第一个匹配的控件
-    public AccessibilityNodeInfo findFirst(AccessibilityService service, AbstractTF... tfs) {
+    public static AccessibilityNodeInfo findFirst(AccessibilityNodeInfo rootInfo, AbstractTF... tfs) {
         if (tfs == null || tfs.length == 0) return null;
 
-        AccessibilityNodeInfo rootInfo = service.getRootInActiveWindow();
         if (rootInfo == null) return null;
 
         int idTextIndex = -1;
@@ -41,21 +39,13 @@ public final class AccessibilityServiceFindUtils {
 
             if (list != null && !list.isEmpty()) {
 
-                for (int i = 1; i < list.size(); i++) {
+                for (int i = 0; i < list.size(); i++) {
                     AccessibilityNodeInfo temp = list.get(i);
-
                     if (returnInfo != null) {//其他的均回收
                         temp.recycle();
                         continue;
                     }
-
-                    if (!tfs[idTextIndex].checkOk(temp)) {//其他的均回收
-                        temp.recycle();
-                        continue;
-                    }
-
-
-                    returnInfo = list.get(i);
+                    returnInfo = temp;
                 }
             }
         }
@@ -89,10 +79,9 @@ public final class AccessibilityServiceFindUtils {
     }
 
     //查找全部匹配的控件
-    public List<AccessibilityNodeInfo> findAll(AccessibilityService service, AbstractTF... tfs) {
+    public static List<AccessibilityNodeInfo> findAll(AccessibilityNodeInfo rootInfo, AbstractTF... tfs) {
         if (tfs.length == 0) return null;
 
-        AccessibilityNodeInfo rootInfo = service.getRootInActiveWindow();
 
         ArrayList<AccessibilityNodeInfo> returnList = new ArrayList<>();
 
@@ -108,7 +97,7 @@ public final class AccessibilityServiceFindUtils {
         }
 
         if (idTextIndex == -1) {
-            findAllRecursive(returnList, rootInfo, tfs);
+            returnList.addAll(findAllRecursive(rootInfo, tfs));
         } else {
             List<AccessibilityNodeInfo> list = null;
             if ((tfs[idTextIndex] instanceof AbstractTF.IdTF)) {
@@ -123,22 +112,23 @@ public final class AccessibilityServiceFindUtils {
             if (list != null && !list.isEmpty()) {
                 if (tfs.length == 1) {
                     returnList.addAll(list);
-                }
-                for (int i = 1; i < list.size(); i++) {
-                    AccessibilityNodeInfo info = list.get(i);
+                } else {
+                    for (int i = 0; i < list.size(); i++) {
+                        AccessibilityNodeInfo info = list.get(i);
 
-                    boolean isOk = true;
-                    for (AbstractTF tf : tfs) {
-                        if (tf.checkOk(info)) continue;
+                        boolean isOk = true;
+                        for (AbstractTF tf : tfs) {
+                            if (tf.checkOk(info)) continue;
 
-                        isOk = false;
-                        break;
-                    }
+                            isOk = false;
+                            break;
+                        }
 
-                    if (isOk) {
-                        list.add(info);
-                    } else {
-                        info.recycle();
+                        if (isOk) {
+                            list.add(info);
+                        } else {
+                            info.recycle();
+                        }
                     }
                 }
             }
@@ -149,9 +139,10 @@ public final class AccessibilityServiceFindUtils {
     }
 
 
-    public static void findAllRecursive
-            (List<AccessibilityNodeInfo> list, AccessibilityNodeInfo parent, AbstractTF... tfs) {
-        if (parent == null || list == null || list.isEmpty() || tfs.length == 0) return;
+    public static List<AccessibilityNodeInfo> findAllRecursive(AccessibilityNodeInfo parent, AbstractTF... tfs) {
+
+        ArrayList<AccessibilityNodeInfo> returnList = new ArrayList<>();
+        if (parent == null || tfs.length == 0) return returnList;
 
 
         for (int i = 0; i < parent.getChildCount(); i++) {
@@ -167,11 +158,12 @@ public final class AccessibilityServiceFindUtils {
             }
 
             if (isOk) {
-                list.add(child);
+                returnList.add(child);
             } else {
-                findAllRecursive(list, child, tfs);
+                returnList.addAll(findAllRecursive(child, tfs));
                 child.recycle();
             }
         }
+        return returnList;
     }
 }

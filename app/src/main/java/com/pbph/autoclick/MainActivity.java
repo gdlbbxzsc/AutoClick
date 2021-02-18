@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import com.pbph.autoclick.activity.optionslist.OptionsListActivity;
 import com.pbph.autoclick.service.AbstractTF;
@@ -119,7 +122,30 @@ public class MainActivity extends Activity {
 
         //    val intent = packageManager.getLaunchIntentForPackage("com.tencent.mm")
 //    startActivity(intent)
-    }
 
+        verifyStoragePermissions();
+    }
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
+
+    public   void verifyStoragePermissions( ) {
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(this,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+                System.out.println("here1 ");
+            }else {
+                System.out.println("here2 ");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
