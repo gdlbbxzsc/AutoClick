@@ -7,7 +7,7 @@
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
     android:notificationTimeout="100"
-    android:packageNames="com.jianzhiku.zhongrenbang"
+    android:packageNames="com.jianzhiku.zhongrenbang,com.tencent.mm"
    />
 <!--    https://blog.csdn.net/qq_24800377/article/details/78283662-->
 <!--    flagIncludeNotImportantViews 获取全部控件-->

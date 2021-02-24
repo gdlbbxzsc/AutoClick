@@ -1,6 +1,9 @@
 package com.pbph.autoclick.uitils;
 
 import android.text.TextUtils;
+import android.view.accessibility.AccessibilityEvent;
+
+import com.pbph.autoclick.Constant;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -10,6 +13,11 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public final class StringUtils {
+
+    public static boolean isPackage(AccessibilityEvent event, String str) {
+        String packageName = (String) event.getPackageName();
+        return Objects.equals(packageName, str);
+    }
 
     public static boolean isEmpty(String str) {
         return null == str || str.length() <= 0;

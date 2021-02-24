@@ -80,10 +80,7 @@ public abstract class AbstractTF<T> {
 
         @Override
         public boolean checkOk(AccessibilityNodeInfo thisInfo) {
-            CharSequence text = thisInfo.getText();
-            if (text == null) return false;
-            String str = text.toString();
-            return mIsEquals ? str.equals(mCheckData) : str.contains(mCheckData);
+            return true;
         }
     }
 

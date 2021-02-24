@@ -11,8 +11,18 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import androidx.annotation.RequiresApi;
 
+import com.pbph.autoclick.uitils.Logger;
+
 public final class AccessibilityServiceEventUtils {
 
+
+    public static void sleep(int num) {
+        try {
+            Thread.sleep(num);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     //    点击返回
     public static boolean back(AccessibilityService service) {
@@ -36,7 +46,7 @@ public final class AccessibilityServiceEventUtils {
     //    点击该控件 true表示点击成功如果当前控件不可点击 查找其父类控件进行点击
     public static boolean clickOrParent(AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo == null) return false;
-        Log.e("===>", "clickOrParent: " +nodeInfo.getClassName() );
+        Logger.e("===>", "clickOrParent: " + nodeInfo.getClassName());
         if (!nodeInfo.isClickable()) return clickOrParent(nodeInfo.getParent());
         boolean b = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         nodeInfo.recycle();

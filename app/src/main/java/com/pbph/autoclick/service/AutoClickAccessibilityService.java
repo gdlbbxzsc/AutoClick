@@ -3,6 +3,13 @@ package com.pbph.autoclick.service;
 import android.accessibilityservice.AccessibilityService;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+
+import com.pbph.autoclick.Myapplication;
+import com.pbph.autoclick.service.pro.WxOptions;
+import com.pbph.autoclick.uitils.Logger;
+
+import java.util.List;
 
 //https://blog.csdn.net/siyujiework/article/details/88996145 root权限下 自动授权无障碍
 //参考    https://www.jianshu.com/p/4cd8c109cdfb
@@ -10,36 +17,44 @@ import android.view.accessibility.AccessibilityEvent;
 //https://blog.csdn.net/qq_24800377/article/details/78283662
 public class AutoClickAccessibilityService extends AccessibilityService {
 
+    private static AutoClickAccessibilityService instances;
+
+
+    public static AutoClickAccessibilityService getInstances() {
+        return instances;
+    }
+
+
     @Override
     public void onInterrupt() {
-        log("onInterrupt");
+        Logger.e("onInterrupt");
     }
 
     //初始化
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
-        log("onServiceConnected");
+        instances = this;
+        Logger.e("onServiceConnected");
     }
 
     //实现辅助功能
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
 
-        int action = event.getAction();
-        int contentChangeTypes = event.getContentChangeTypes();
         int eventType = event.getEventType();//事件类型
-        long eventTime = event.getEventTime();
 
+        WxOptions.getInstance().onAccessibilityEvent(event);
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED: {//Notification通知变化
-                // Wx_HongBao.onAccessibilityEvent(event);
+//                WxOptions.getInstance().onAccessibilityEvent(event);
             }
             break;
             /////////////
             case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:  //窗口的内容发生变化，或子树根布局发生变化
-            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: {//打开了一个PopupWindow，Menu或Dialog
-                ZhongRenBang.onAccessibilityEvent(this, event);
+            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: {//打开了一个PopupWindow，Menu或DiaLogger.e
+//                ZhongRenBang.onAccessibilityEvent(this, event);
+
             }
             break;
             /////////////
@@ -113,8 +128,5 @@ public class AutoClickAccessibilityService extends AccessibilityService {
         }
     }
 
-    private void log(String str) {
-        Log.e("====>", str);
-    }
 
 }

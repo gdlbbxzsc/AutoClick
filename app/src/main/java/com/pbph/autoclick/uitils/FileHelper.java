@@ -7,9 +7,12 @@ import android.util.Log;
 
 import com.pbph.autoclick.BuildConfig;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 
 /**
@@ -76,4 +79,41 @@ public final class FileHelper {
             return null;
         }
     }
+
+
+
+
+
+    public static String read(String fileName) {
+        try {
+            File file = FileHelper.getInstance().toAppPath().fileName(fileName).create(true);
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String readline = "";
+            StringBuffer sb = new StringBuffer();
+            while ((readline = br.readLine()) != null) {
+                sb.append(readline);
+            }
+            br.close();
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static void write(String fileName, String info) {
+        try {
+            File file = FileHelper.getInstance().toAppPath().fileName(fileName).create(true);
+            com.pbph.autoclick.uitils.Logger.e(file.getAbsolutePath());
+            //第二个参数意义是说是否以append方式添加内容
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+            bw.write(info);
+            bw.flush();
+            bw.close();
+            Logger.e("写入成功" + file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
