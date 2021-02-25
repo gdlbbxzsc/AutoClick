@@ -34,22 +34,9 @@ public final class ZhongRenBangOptions extends BaseOptions {
     }
 
 
-    public void onAccessibilityEvent() {
-        switch (eventType) {
-            case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:  //窗口的内容发生变化，或子树根布局发生变化
-            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED: {//打开了一个PopupWindow，Menu或Dialog
-                taskList(event);
-                taskDetail(event);
-            }
-            break;
-        }
-    }
-
-
     public boolean taskList(AccessibilityEvent event) {
 
 
-        if (!StringUtils.isPackage(event, Constant.PKG_ZRB)) return false;
 
         AccessibilityNodeInfo content_bar_title = AccessibilityServiceFindUtils.findFirst(service.getRootInActiveWindow(), AbstractTF.newId("com.jianzhiku.zhongrenbang:id/hall_tab"));
 

@@ -47,4 +47,8 @@ public class GetxyActivity extends Activity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

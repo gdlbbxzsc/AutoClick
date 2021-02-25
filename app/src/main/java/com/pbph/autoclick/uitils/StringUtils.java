@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
 
 public final class StringUtils {
 
-    public static boolean isPackage(AccessibilityEvent event, String str) {
-        String packageName = (String) event.getPackageName();
-        return Objects.equals(packageName, str);
+    public static boolean isPackage(String event, String str) {
+//        String packageName = (String) event.getPackageName();
+        return Objects.equals(event, str);
     }
 
     public static boolean isEmpty(String str) {

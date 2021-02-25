@@ -24,16 +24,14 @@ public class Ids {
         //朋友圈 点赞名称列表 ID_PAGE_PENGYOUQUAN_ITEM_RL only
         public static final String ID_PAGE_PENGYOUQUAN_ITEM_ZANNAMES_TV = "com.tencent.mm:id/hys";
 
+        //朋友圈 发布时间 控件 ID_PAGE_PENGYOUQUAN_ITEM_RL only
+        public static final String ID_PAGE_PENGYOUQUAN_ITEM_TIME_IV = "com.tencent.mm:id/km";
+
         //朋友圈 点赞评论弹出 控件 ID_PAGE_PENGYOUQUAN_ITEM_RL only
         public static final String ID_PAGE_PENGYOUQUAN_ITEM_POPZANPING_IV = "com.tencent.mm:id/kn";
 
         //朋友圈 点赞 控件    only
         public static final String ID_PAGE_PENGYOUQUAN_ITEM_ZAN_TV = "com.tencent.mm:id/kb";
-
-
-
-
-
 
     }
 }
