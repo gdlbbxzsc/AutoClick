@@ -1,26 +1,18 @@
 package com.pbph.autoclick;
 
-import android.accessibilityservice.AccessibilityService;
-import android.accessibilityservice.GestureDescription;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Rect;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
 import com.pbph.autoclick.activity.optionslist.OptionsListActivity;
-import com.pbph.autoclick.service.AbstractTF;
 import com.pbph.autoclick.service.AutoClickAccessibilityService;
 import com.pbph.autoclick.service.AutoService;
 import com.pbph.autoclick.uitils.AccessibilityServiceUtils;
@@ -78,6 +70,27 @@ public class MainActivity extends Activity {
         });
 
 
+        final TextView tv_btn_run_time = findViewById(R.id.tv_btn_run_time);
+        tv_btn_run_time.setOnClickListener(v -> {
+            if (Myapplication.time == 5)
+                Myapplication.time = 37;
+
+            else
+                Myapplication.time = 5;
+            tv_btn_run_time.setText("间隔" + Myapplication.time + "秒");
+        });
+        final TextView tv_btn_run = findViewById(R.id.tv_btn_run);
+        tv_btn_run.setOnClickListener(v -> {
+            if (Myapplication.isRun) {
+                Myapplication.isRun = false;
+                tv_btn_run.setText("运行中");
+            } else {
+                Myapplication.isRun = true;
+                tv_btn_run.setText("停止");
+            }
+        });
+
+
         final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
 
 
@@ -124,23 +137,25 @@ public class MainActivity extends Activity {
 //    startActivity(intent)
 
         verifyStoragePermissions();
+
     }
+
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
 
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
-            "android.permission.WRITE_EXTERNAL_STORAGE" };
+            "android.permission.WRITE_EXTERNAL_STORAGE"};
 
-    public   void verifyStoragePermissions( ) {
+    public void verifyStoragePermissions() {
         try {
             //检测是否有写的权限
             int permission = ActivityCompat.checkSelfPermission(this,
                     "android.permission.WRITE_EXTERNAL_STORAGE");
             if (permission != PackageManager.PERMISSION_GRANTED) {
                 // 没有写的权限，去申请写的权限，会弹出对话框
-                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
                 System.out.println("here1 ");
-            }else {
+            } else {
                 System.out.println("here2 ");
             }
         } catch (Exception e) {

@@ -50,8 +50,22 @@ public class WxTaskQueue extends BaseTaskQueue {
 
     @Override
     public void run() {
+        if (true){
+          AccessibilityNodeInfo a=  wxOptions.getWxPengYouQuanListViewById();
+          a.getChild(0).performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
+          Logger.e("=========================111111111111111");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+//            wxOptions.scrollWxPengYouQuanListViewForward();
+            return;
+        }
+
         Logger.e("run==========");
         while (true) {
+
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {

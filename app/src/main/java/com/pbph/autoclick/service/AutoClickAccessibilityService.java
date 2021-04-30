@@ -7,6 +7,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.pbph.autoclick.Myapplication;
 import com.pbph.autoclick.service.pro.WxOptions;
+import com.pbph.autoclick.service.task.SwipeQueue;
 import com.pbph.autoclick.service.task.WxTaskQueue;
 import com.pbph.autoclick.uitils.Logger;
 
@@ -45,8 +46,8 @@ public class AutoClickAccessibilityService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
 Logger.e("pck",event.getPackageName());
-        WxTaskQueue.getInstance().onAccessibilityEvent(event);
-
+//        WxTaskQueue.getInstance().onAccessibilityEvent(event);
+        SwipeQueue.getInstance().onAccessibilityEvent(event);
 //        int eventType = event.getEventType();//事件类型
 //        switch (eventType) {
 //            case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED: {//Notification通知变化

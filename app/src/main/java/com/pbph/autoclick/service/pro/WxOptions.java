@@ -63,8 +63,6 @@ public final class WxOptions extends BaseOptions {
     }
 
     public AccessibilityNodeInfo getWxPengYouQuanListViewById() {
-
-
         return AccessibilityServiceFindUtils.findFirst(service.getRootInActiveWindow(), AbstractTF.newId(Ids.Wx.ID_PAGE_PENGYOUQUAN_LV));
     }
 
