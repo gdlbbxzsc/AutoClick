@@ -21,7 +21,6 @@ public class SwipeQueue extends BaseTaskQueue {
     }
 
     private SwipeQueue() {
-
     }
 
 
